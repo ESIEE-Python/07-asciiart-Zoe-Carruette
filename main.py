@@ -1,6 +1,7 @@
 """Exercice ASCII art"""
 #### Imports et définition des variables globales
-
+import sys
+sys.setrecursionlimit(1100)
 
 #### Fonctions secondaires
 
