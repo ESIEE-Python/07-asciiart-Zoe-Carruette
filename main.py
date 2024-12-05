@@ -1,3 +1,4 @@
+"""Exercice ASCII art"""
 #### Imports et définition des variables globales
 
 
@@ -5,7 +6,7 @@
 
 
 def artcode_i(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme itératif
+    """ASCII art algorithme itératif
 
     Args:
         s (str): la chaîne de caractères à encoder
@@ -13,14 +14,21 @@ def artcode_i(s):
     Returns:
         list: la liste des tuples (caractère, nombre d'occurences)
     """
-    
     # votre code ici
-
-    return [ ]
+    n=len(s)
+    c=[s[0]]
+    o=[1]
+    for k in range (1,n):
+        if s[k] == s[k-1]:
+            o[-1]+= 1
+        else:
+            c.append(s[k])
+            o.append(1)
+    return list( zip(c,o))
 
 
 def artcode_r(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme récursif
+    """ASCII art avec algorithme récursif
 
     Args:
         s (str): la chaîne de caractères à encoder
@@ -28,20 +36,24 @@ def artcode_r(s):
     Returns:
         list: la liste des tuples (caractère, nombre d'occurences)
     """
-    
+
     # votre code ici
-
+    n=len(s)
     # cas de base
+    if n==0:
+        return[]
     # recherche nombre de caractères identiques au premier
+    occ = 1
+    while occ<n and s[occ]==s[0]:
+        occ+=1
     # appel récursif
-
-    return []
-    
-
+    tpl=(s[0],occ)
+    return [tpl] + artcode_r(s[occ:])
 #### Fonction principale
 
 
 def main():
+    """Fonction principal"""
     print(artcode_i('MMMMaaacXolloMM'))
     print(artcode_r('MMMMaaacXolloMM'))
 
